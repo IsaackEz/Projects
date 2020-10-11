@@ -5,7 +5,6 @@ Tabla = np.array(((0.0, 7, 2, 1, 0, 300),   #Matrix
                   (0, 3, 3, 0, 1, 270),
                   (1, -6, -2, 0, 0, 0)))
 
-
 '''
 #Ejercicio 27
 Tabla = np.array(((0.0, 1,     2, 1, 0, 0, 180),   #Matrix
