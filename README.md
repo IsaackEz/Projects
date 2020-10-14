@@ -1,3 +1,5 @@
+# ENGLISH
+
 # REQUIREMENTS
 - numpy library
 - Download MetodoSimplex.py
@@ -15,3 +17,19 @@ Then it will ask you how many variables your problem have. Once you done this. T
 # NOTES:
 - If you are doing minimization, the variables X1, X2, X3, X4... Xn will be backwards. X1 will be X4, X2 will be X3... and on. 
 ONLY IN MINIMIZATION.
+
+..................................................................................................................................................................................................................................................................................
+# ESPAÑOL
+
+# REQUISITOS
+- biblioteca numpy
+- Descarga MetodoSimplex.py
+# CÓMO UTILIZAR:
+Use la tabla para llenar la suya, si está lidiando con un problema de MAXIMIZACIÓN, debe poner las restricciones como su problema. Si la restricción es> = en un problema de maximización, entonces debe multiplicarla por -1 para cambiar el símbolo a <=.
+
+Si el problema es MINIMIZACIÓN, entonces debe transponer la tabla. (Las filas se convierten en columnas y viceversa). Entonces puedes llenar la tabla igual que MAX
+
+Una vez que haya terminado su tabla, puede ejecutar el programa. Esto le preguntará Min o Max: (MINIMIZACIÓN o MAXIMIZACIÓN) Debe responder: "Max" o "max" o "Min" o "min". Luego te preguntará cuántas variables tiene tu problema. Una vez hecho esto. El programa te dará los resultados.
+
+# NOTAS:
+Si está minimizando, las variables X1, X2, X3, X4 ... Xn estarán al revés. X1 será X4, X2 será X3 ... y así sucesivamente. SOLO EN MINIMIZACIÓN.
