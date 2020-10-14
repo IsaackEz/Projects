@@ -1,8 +1,8 @@
 import numpy as np  #Libreria de python para dar soporte a largas matrices y operaciones matematias
-
-Tabla = np.array(((0.0, 7, 2, 1, 0, 300),   #Matrix
-                  (0, 3, 3, 0, 1, 270),
-                  (1, -6, -2, 0, 0, 0)))
+                   #Z   X1  X2   S1  S2   Res
+Tabla = np.array(((0.0, 7,  2,   1,  0,   300),   #Matrix
+                  (0,   3,  3,   0,  1,   270),
+                  (1,  -6, -2,   0,  0,   0)))
 
 decision = input("Max o Min: ") #Se decide si el problema es de maximizacion o de minimizacion
 variables = input("Numero de variables: ")  #Se decide cuantas variables existen
