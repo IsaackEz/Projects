@@ -1,5 +1,5 @@
 import numpy as np  #Libreria de python para dar soporte a largas matrices y operaciones matematias
-                   #Z   X1  X2   S1  S2   Res
+
 Tabla = np.array((
                   (0, 1, 1, 1, 1, 1, 0, 0,                  1, 0, 0, 0, 0, 0, 0, 300000),
                   (0, 0, 1, 1, 1, 1, 1, 0,                  0, 1, 0, 0, 0, 0, 0, 300000),
