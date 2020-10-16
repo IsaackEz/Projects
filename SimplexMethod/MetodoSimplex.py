@@ -1,8 +1,14 @@
 import numpy as np  #Libreria de python para dar soporte a largas matrices y operaciones matematias
                    #Z   X1  X2   S1  S2   Res
-Tabla = np.array(((0.0, 1,  1,   0,  1, 0, 200),   #Matrix
-                  (0,   1,   1,   -1, 0, 1, 150),
-                  (1,  -3000, -1000,  1000, 0, 0, 0)))
+Tabla = np.array((
+                  (0, 1, 1, 1, 1, 1, 0, 0,                  1, 0, 0, 0, 0, 0, 0, 300000),
+                  (0, 0, 1, 1, 1, 1, 1, 0,                  0, 1, 0, 0, 0, 0, 0, 300000),
+                  (0, 0, 0, 1, 1, 1, 1, 1,                  0, 0, 1, 0, 0, 0, 0, 300000),
+                  (0, 1, 0, 0, 1, 1, 1, 1,                  0, 0, 0, 1, 0, 0, 0, 300000),
+                  (0, 1, 1, 0, 0, 1, 1, 1,                  0, 0, 0, 0, 1, 0, 0, 300000),
+                  (0, 1, 1, 1, 0, 0, 1, 1,                  0, 0, 0, 0, 0, 1, 0, 300000),
+                  (0, 1, 1, 1, 1, 0, 0, 1,                  0, 0, 0, 0, 0, 0, 1, 300000),
+                  (1, -16, -15, -17, -19, -14, -12, -18,    0, 0, 0, 0, 0, 0, 0, 0.0)))
 
 decision = input("Max o Min: ") #Se decide si el problema es de maximizacion o de minimizacion
 variables = input("Numero de variables: ")  #Se decide cuantas variables existen
@@ -35,15 +41,11 @@ while(flag != 0):   #Loop para quitar los negativos en fZ
             cocRadios.append(cocRadio)  #Los vamos colocando en otro array que definimos en la linea 10
             cosPivote = np.amin(cocRadios)  #Obtenemos el minimo de los cociente de radio
             igcosPivote = [j for j, igcosPivote in enumerate(cocRadios) if igcosPivote == cosPivote] #Aqui guardamos todos los minimos para fPivote
-            posCosPivote = np.where(cosPivote == cocRadios)
-            if(len(igcosPivote) > 1):  #Checamos si existen mas de una fila pivote
-                fPivote = filasPositivas[0][0]  #Si hay mas de 1 se guarda la primera posicion del minimo en variable fPivote
-            else:
-                fPivote = filasPositivas[0][int(posCosPivote[0])]  #Si no hay se guarda la posicion del minimo en variable fPivote
+            fPivote = filasPositivas[0][int(igcosPivote[0])]  #Si hay mas de 1 se guarda la primera posicion del minimo en variable fPivote
         Tabla[fPivote][:] = (Tabla[fPivote][:])/(Tabla[fPivote][cPivote[0][0]]) #Recalculamos la fila pivote la cual sera nuestra fila entrante
         for i in range(len(Tabla)):   #Loop para recalcular las demas filas
             if (i != fPivote):  #Sentencia para evitar modificar nuestra fila entrante
-                Tabla[i][:] = Tabla[i][:] - (Tabla[i][cPivote[0][0]]*Tabla[fPivote][:])   #Formula para calcular las filas nuevas
+                  Tabla[i][:] = Tabla[i][:] - (Tabla[i][cPivote[0][0]]*Tabla[fPivote][:])   #Formula para calcular las filas nuevas
     else:
         flag = 0    #El programa no encontro negativos en fZ y cambia la bandera
 
