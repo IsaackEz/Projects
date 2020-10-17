@@ -44,7 +44,6 @@ function fillNewTable(rows, columns) {
         newTable[i] = [];
         for (let j = 0; j < columns; j++) {
             newTable[i][j] = [];
-            var column = [];
         }
     }
     return newTable;
