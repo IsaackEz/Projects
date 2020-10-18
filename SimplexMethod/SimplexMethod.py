@@ -1,17 +1,17 @@
 import numpy as np  #Library for support for large, multi-dimensional arrays and matrices
 
-# #Table for MAX
-# Table = np.array(((0, 2, -1, 1, 0, 4),
-#                   (0, 4, 3,  0, 1, 18),
-#                   (1, -800, -200, 0, 0, 0.0)))
+#Table for MAX
+Table = np.array((  (0.0, 2, -1, 1, 0, 4),
+                    (0, 4, 3, 0, 1, 18),
+                    (0, -800, -200, 0, 0, 0)))
 
-#Table for MIN
-Table = np.array(((2, 1, 8), #Constraints
-                  (6, 1, 12),   #Constraints
-                  (1, 3, 9),    #Constraints
-                  (1, 0, 0), #Slack variables
-                  (0, 1, 0), #Slack variables
-                  (600, 400, 0.0))) #Z
+# #Table for MIN
+# Table = np.array(((2, 1, 8), #Constraints
+#                   (6, 1, 12),   #Constraints
+#                   (1, 3, 9),    #Constraints
+#                   (1, 0, 0), #Slack variables
+#                   (0, 1, 0), #Slack variables
+#                   (600, 400, 0.0))) #Z
 
 decision = input("Max or Min: ") #Deciding if is maximization or minimization
 variables = input("No. variables: ")  #How many variables
@@ -74,7 +74,6 @@ def max():
                     Table[i][:] = Table[i][:] - (Table[i][pivotC[0][0]]*Table[pivotR][:])   #Formula to calculate the new rows
         else:
             flag = 0    #There is no negative numbers in the last row (funZ)
-        #print(Table) #Printing the entire table
 
 if(decision == "Max" or decision == "max"): #If is maximization
     max()   #Calling the max function
