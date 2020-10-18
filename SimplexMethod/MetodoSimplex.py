@@ -52,7 +52,7 @@ def min():
                     TableT[i][:] = TableT[i][:] - (TableT[i][pivotC[0][0]]*TableT[pivotR][:])   #Formula to calculate the new rows
         else:
             flag = 0    #There is no negative numbers in the last row (funZ)
-    print(TableT) #Printing the entire table
+    #print(TableT) #Printing the entire table
 
 def max():
     flag = 1 #Flag to know if we finished (There is no negatives on last row (Z))
@@ -74,7 +74,7 @@ def max():
                     Table[i][:] = Table[i][:] - (Table[i][pivotC[0][0]]*Table[pivotR][:])   #Formula to calculate the new rows
         else:
             flag = 0    #There is no negative numbers in the last row (funZ)
-        print(Table) #Printing the entire table
+        #print(Table) #Printing the entire table
 
 if(decision == "Max" or decision == "max"): #If is maximization
     max()   #Calling the max function
