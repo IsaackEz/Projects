@@ -1,56 +1,86 @@
-import numpy as np  #Libreria de python para dar soporte a largas matrices y operaciones matematias
-                   #Z   X1  X2   S1  S2   Res
-Tabla = np.array((
-                  (0, 1, 1, 1, 1, 1, 0, 0,                  1, 0, 0, 0, 0, 0, 0, 300000),
-                  (0, 0, 1, 1, 1, 1, 1, 0,                  0, 1, 0, 0, 0, 0, 0, 300000),
-                  (0, 0, 0, 1, 1, 1, 1, 1,                  0, 0, 1, 0, 0, 0, 0, 300000),
-                  (0, 1, 0, 0, 1, 1, 1, 1,                  0, 0, 0, 1, 0, 0, 0, 300000),
-                  (0, 1, 1, 0, 0, 1, 1, 1,                  0, 0, 0, 0, 1, 0, 0, 300000),
-                  (0, 1, 1, 1, 0, 0, 1, 1,                  0, 0, 0, 0, 0, 1, 0, 300000),
-                  (0, 1, 1, 1, 1, 0, 0, 1,                  0, 0, 0, 0, 0, 0, 1, 300000),
-                  (1, -16, -15, -17, -19, -14, -12, -18,    0, 0, 0, 0, 0, 0, 0, 0.0)))
+import numpy as np  #Library for support for large, multi-dimensional arrays and matrices
 
-decision = input("Max o Min: ") #Se decide si el problema es de maximizacion o de minimizacion
-variables = input("Numero de variables: ")  #Se decide cuantas variables existen
+# #Table for MAX
+# Table = np.array(((0, 2, -1, 1, 0, 4),
+#                   (0, 4, 3,  0, 1, 18),
+#                   (1, -800, -200, 0, 0, 0.0)))
 
-def maximizacion(var):
-    for i in range(var):    #Loop para saber los resultados de las variables
-        if (sum(Tabla[:,i+1])==1):  #Comprobamos si la columna que estamos checando sea = 1 (Esto para encontrar X y comprobar que son las variables reales)
-            filaX = np.where(Tabla[:,i+1]==1)   #Obtenemos la fila de nuestra variable X
-            x = Tabla[int(filaX[0])][-1]    #Guardamos en x la solucion para X
+#Table for MIN
+Table = np.array(((2, 1, 8), #Constraints
+                  (6, 1, 12),   #Constraints
+                  (1, 3, 9),    #Constraints
+                  (1, 0, 0), #Slack variables
+                  (0, 1, 0), #Slack variables
+                  (600, 400, 0.0))) #Z
+
+decision = input("Max or Min: ") #Deciding if is maximization or minimization
+variables = input("No. variables: ")  #How many variables
+
+def maximization(var):
+    for i in range(var):    #Loop to print the variables
+        if (sum(Table[:,i+1])==1):  #Check if the column is == 1 (Finding X and check if is the real variable)
+            rowX = np.where(Table[:,i+1]==1)   #Get the row of the variable X
+            x = Table[int(rowX[0])][-1]    #Save the solution for X[i]
         else:
-            x = 0   #Si no hay solucion se le asigna 0
-        print("X"+str(i+1)+": "+str(x)) #Imprimimos el valor de las variables
-    print("Z:", Tabla[-1][-1])    #Imprimimos el valor de Z
+            x = 0   #If there is no solution assign 0
+        print("X"+str(i+1)+": "+str(x)) #Print the variables X[i]
+    print("Z:", Table[-1][-1])    #Print function Z
 
-def minimizacion(var):
-    for i in range(var):    #Loop para saber los resultados de las variables
-        x = Tabla[-1][-2-i]    #Guardamos en x la solucion para X
-        print("X"+str(i+1)+": "+str(x)) #Imprimimos el valor de las variables
-    print("Z:", Tabla[-1][-1])    #Imprimimos el valor de Z
+def minimization(var):
+    for i in range(var):    #Loop to print the variables
+        x = TableT[-1][-2-i]    #Get the row of the variable X
+        print("X"+str(i+1)+": "+str(x)) #Print the variables X[i]
+    print("Z:", TableT[-1][-1])    #Print function Z
 
-flag = 1 #Bandera que indica si encuentra negativos en fZ
-while(flag != 0):   #Loop para quitar los negativos en fZ
-    cocRadios = []  #Array para los cocientes de Radio
-    min_funcionZ = np.amin(Tabla[-1][:])   #Encontramos el minimo en la fZ
-    cPivote = np.where(Tabla[-1][:] == min_funcionZ) #Obtenemos la fila y la columna del minimo en FZ
-    if min_funcionZ < 0:  #Si el minimo fZ es menor a 0 realizamos el sig code
-        filasPositivas = np.where((Tabla[:,cPivote[0][0]] > 0))  #Obtenemos los valores positivos de la cPivote Fila y Columna  
-        for i in range(len(filasPositivas[0])):     #Loop para obtener los cocientes de radio y saber el minimo
-            cocRadio = np.divide((Tabla[filasPositivas[0][i]][-1]),(Tabla[filasPositivas[0][i]][cPivote[0][0]]))  #Division del cociente de Radio
-            cocRadios.append(cocRadio)  #Los vamos colocando en otro array que definimos en la linea 10
-            cosPivote = np.amin(cocRadios)  #Obtenemos el minimo de los cociente de radio
-            igcosPivote = [j for j, igcosPivote in enumerate(cocRadios) if igcosPivote == cosPivote] #Aqui guardamos todos los minimos para fPivote
-            fPivote = filasPositivas[0][int(igcosPivote[0])]  #Si hay mas de 1 se guarda la primera posicion del minimo en variable fPivote
-        Tabla[fPivote][:] = (Tabla[fPivote][:])/(Tabla[fPivote][cPivote[0][0]]) #Recalculamos la fila pivote la cual sera nuestra fila entrante
-        for i in range(len(Tabla)):   #Loop para recalcular las demas filas
-            if (i != fPivote):  #Sentencia para evitar modificar nuestra fila entrante
-                  Tabla[i][:] = Tabla[i][:] - (Tabla[i][cPivote[0][0]]*Tabla[fPivote][:])   #Formula para calcular las filas nuevas
-    else:
-        flag = 0    #El programa no encontro negativos en fZ y cambia la bandera
+def min():
+    flag = 1 #Flag to know if we finished (There is no negatives on last row (Z))
+    while(flag != 0):   #Loop to remove the negatives on Z
+        radQuots = []  #Array for the radius quotient
+        minFunZ = np.amin(TableT[-1][:])   #Find the min of the last row (Z)
+        pivotC = np.where(TableT[-1][:] == minFunZ) #Find the column of the minFunZ
+        if minFunZ < 0:  #If the min of function Z is < 0
+            positivesRows = np.where((TableT[:,pivotC[0][0]] > 0))  #Getting the positives values for the pivot column
+            for i in range(len(positivesRows[0])):     #Getting the min radius quotient 
+                radQuot = (TableT[positivesRows[0][i]][-1])/(TableT[positivesRows[0][i]][pivotC[0][0]]) #Dividing the radius quotient
+                radQuots.append(radQuot)  #Puttin them on a list
+                pivotQuot = np.amin(radQuots)  #Getting the min of the radQuots
+                samePivotQuot = [j for j, samePivotQuot in enumerate(radQuots) if samePivotQuot == pivotQuot] #Saving all the min radius quotient
+                pivotR = positivesRows[0][int(samePivotQuot[0])]  #If there is more than 1 min radius quotient select the first one
+            TableT[pivotR][:] = (TableT[pivotR][:])/(TableT[pivotR][pivotC[0][0]]) #Recalculate the pivotR, that it will be our objective row
+            for i in range(len(TableT)):   #Recalculating the rows remaning
+                if (i != pivotR):  #Modifying all but the objective row
+                    TableT[i][:] = TableT[i][:] - (TableT[i][pivotC[0][0]]*TableT[pivotR][:])   #Formula to calculate the new rows
+        else:
+            flag = 0    #There is no negative numbers in the last row (funZ)
+    print(TableT) #Printing the entire table
 
-if(decision == "Max" or decision == "max"): #Si es de maximizacion se ejecuta la funcion de maximizacion
-    maximizacion(int(variables))
-elif(decision == "Min" or decision == "min"):  #Si es de maximizacion se ejecuta la funcion de minimizacion
-    minimizacion(int(variables))
-#print("\n",Tabla)
+def max():
+    flag = 1 #Flag to know if we finished (There is no negatives on last row (Z))
+    while(flag != 0):   #Loop to remove the negatives on Z
+        radQuots = []  #Array for the radius quotient
+        minFunZ = np.amin(Table[-1][:])   #Find the min of the last row (Z)
+        pivotC = np.where(Table[-1][:] == minFunZ) #Find the column of the minFunZ
+        if minFunZ < 0:  #If the min of function Z is < 0
+            positivesRows = np.where((Table[:,pivotC[0][0]] > 0))  #Getting the positives values for the column pivot
+            for i in range(len(positivesRows[0])):     #Getting the min radius quotient 
+                radQuot = (Table[positivesRows[0][i]][-1])/(Table[positivesRows[0][i]][pivotC[0][0]]) #Dividing the radius quotient
+                radQuots.append(radQuot)  #Puttin them on a list
+                pivotQuot = np.amin(radQuots)  #Getting the min of the radQuots
+                samePivotQuot = [j for j, samePivotQuot in enumerate(radQuots) if samePivotQuot == pivotQuot] #Saving all the min radius quotient
+                pivotR = positivesRows[0][int(samePivotQuot[0])]  #If there is more than 1 min radius quotient select the first one
+            Table[pivotR][:] = (Table[pivotR][:])/(Table[pivotR][pivotC[0][0]]) #Recalculate the pivotR
+            for i in range(len(Table)):   #Recalculating the rows remaning
+                if (i != pivotR):  #Modifying all but the objective row
+                    Table[i][:] = Table[i][:] - (Table[i][pivotC[0][0]]*Table[pivotR][:])   #Formula to calculate the new rows
+        else:
+            flag = 0    #There is no negative numbers in the last row (funZ)
+        print(Table) #Printing the entire table
+
+if(decision == "Max" or decision == "max"): #If is maximization
+    max()   #Calling the max function
+    maximization(int(variables))    #Calling the maximization function passing the number of variables
+elif(decision == "Min" or decision == "min"):  #If is minimization
+    TableT = np.transpose(Table)    #Transposing the original Table to do the dual method
+    TableT[-1][:] *= -1 #Multiplying by -1 the last row (Z) (To make the equality)
+    min()   #Calling the min function
+    minimization(int(variables))    #Calling the maximization function passing the number of variables
