@@ -1,0 +1,431 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> TIPO LETRA IGUAL expression
+Rule 2     statement -> expression
+Rule 3     statement -> SWITCH LETRA LETRA
+Rule 4     expression -> expression SUM expression
+Rule 5     expression -> expression RES expression
+Rule 6     expression -> expression MUL expression
+Rule 7     expression -> expression DIV expression
+Rule 8     expression -> PARE1 expression PARE2
+Rule 9     expression -> INT
+Rule 10    expression -> FLOAT
+Rule 11    expression -> LETRA
+
+Terminals, with rules where they appear
+
+DIV                  : 7
+FLOAT                : 10
+IGUAL                : 1
+INT                  : 9
+LETRA                : 1 3 3 11
+MUL                  : 6
+PARE1                : 8
+PARE2                : 8
+RES                  : 5
+SUM                  : 4
+SWITCH               : 3
+TIPO                 : 1
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 2 4 4 5 5 6 6 7 7 8
+statement            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . TIPO LETRA IGUAL expression
+    (2) statement -> . expression
+    (3) statement -> . SWITCH LETRA LETRA
+    (4) expression -> . expression SUM expression
+    (5) expression -> . expression RES expression
+    (6) expression -> . expression MUL expression
+    (7) expression -> . expression DIV expression
+    (8) expression -> . PARE1 expression PARE2
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . LETRA
+
+    TIPO            shift and go to state 2
+    SWITCH          shift and go to state 5
+    PARE1           shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    LETRA           shift and go to state 3
+
+    statement                      shift and go to state 1
+    expression                     shift and go to state 4
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> TIPO . LETRA IGUAL expression
+
+    LETRA           shift and go to state 9
+
+
+state 3
+
+    (11) expression -> LETRA .
+
+    SUM             reduce using rule 11 (expression -> LETRA .)
+    RES             reduce using rule 11 (expression -> LETRA .)
+    MUL             reduce using rule 11 (expression -> LETRA .)
+    DIV             reduce using rule 11 (expression -> LETRA .)
+    $end            reduce using rule 11 (expression -> LETRA .)
+    PARE2           reduce using rule 11 (expression -> LETRA .)
+
+
+state 4
+
+    (2) statement -> expression .
+    (4) expression -> expression . SUM expression
+    (5) expression -> expression . RES expression
+    (6) expression -> expression . MUL expression
+    (7) expression -> expression . DIV expression
+
+    $end            reduce using rule 2 (statement -> expression .)
+    SUM             shift and go to state 10
+    RES             shift and go to state 11
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+
+
+state 5
+
+    (3) statement -> SWITCH . LETRA LETRA
+
+    LETRA           shift and go to state 14
+
+
+state 6
+
+    (8) expression -> PARE1 . expression PARE2
+    (4) expression -> . expression SUM expression
+    (5) expression -> . expression RES expression
+    (6) expression -> . expression MUL expression
+    (7) expression -> . expression DIV expression
+    (8) expression -> . PARE1 expression PARE2
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . LETRA
+
+    PARE1           shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    LETRA           shift and go to state 3
+
+    expression                     shift and go to state 15
+
+state 7
+
+    (9) expression -> INT .
+
+    SUM             reduce using rule 9 (expression -> INT .)
+    RES             reduce using rule 9 (expression -> INT .)
+    MUL             reduce using rule 9 (expression -> INT .)
+    DIV             reduce using rule 9 (expression -> INT .)
+    $end            reduce using rule 9 (expression -> INT .)
+    PARE2           reduce using rule 9 (expression -> INT .)
+
+
+state 8
+
+    (10) expression -> FLOAT .
+
+    SUM             reduce using rule 10 (expression -> FLOAT .)
+    RES             reduce using rule 10 (expression -> FLOAT .)
+    MUL             reduce using rule 10 (expression -> FLOAT .)
+    DIV             reduce using rule 10 (expression -> FLOAT .)
+    $end            reduce using rule 10 (expression -> FLOAT .)
+    PARE2           reduce using rule 10 (expression -> FLOAT .)
+
+
+state 9
+
+    (1) statement -> TIPO LETRA . IGUAL expression
+
+    IGUAL           shift and go to state 16
+
+
+state 10
+
+    (4) expression -> expression SUM . expression
+    (4) expression -> . expression SUM expression
+    (5) expression -> . expression RES expression
+    (6) expression -> . expression MUL expression
+    (7) expression -> . expression DIV expression
+    (8) expression -> . PARE1 expression PARE2
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . LETRA
+
+    PARE1           shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    LETRA           shift and go to state 3
+
+    expression                     shift and go to state 17
+
+state 11
+
+    (5) expression -> expression RES . expression
+    (4) expression -> . expression SUM expression
+    (5) expression -> . expression RES expression
+    (6) expression -> . expression MUL expression
+    (7) expression -> . expression DIV expression
+    (8) expression -> . PARE1 expression PARE2
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . LETRA
+
+    PARE1           shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    LETRA           shift and go to state 3
+
+    expression                     shift and go to state 18
+
+state 12
+
+    (6) expression -> expression MUL . expression
+    (4) expression -> . expression SUM expression
+    (5) expression -> . expression RES expression
+    (6) expression -> . expression MUL expression
+    (7) expression -> . expression DIV expression
+    (8) expression -> . PARE1 expression PARE2
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . LETRA
+
+    PARE1           shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    LETRA           shift and go to state 3
+
+    expression                     shift and go to state 19
+
+state 13
+
+    (7) expression -> expression DIV . expression
+    (4) expression -> . expression SUM expression
+    (5) expression -> . expression RES expression
+    (6) expression -> . expression MUL expression
+    (7) expression -> . expression DIV expression
+    (8) expression -> . PARE1 expression PARE2
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . LETRA
+
+    PARE1           shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    LETRA           shift and go to state 3
+
+    expression                     shift and go to state 20
+
+state 14
+
+    (3) statement -> SWITCH LETRA . LETRA
+
+    LETRA           shift and go to state 21
+
+
+state 15
+
+    (8) expression -> PARE1 expression . PARE2
+    (4) expression -> expression . SUM expression
+    (5) expression -> expression . RES expression
+    (6) expression -> expression . MUL expression
+    (7) expression -> expression . DIV expression
+
+    PARE2           shift and go to state 22
+    SUM             shift and go to state 10
+    RES             shift and go to state 11
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+
+
+state 16
+
+    (1) statement -> TIPO LETRA IGUAL . expression
+    (4) expression -> . expression SUM expression
+    (5) expression -> . expression RES expression
+    (6) expression -> . expression MUL expression
+    (7) expression -> . expression DIV expression
+    (8) expression -> . PARE1 expression PARE2
+    (9) expression -> . INT
+    (10) expression -> . FLOAT
+    (11) expression -> . LETRA
+
+    PARE1           shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    LETRA           shift and go to state 3
+
+    expression                     shift and go to state 23
+
+state 17
+
+    (4) expression -> expression SUM expression .
+    (4) expression -> expression . SUM expression
+    (5) expression -> expression . RES expression
+    (6) expression -> expression . MUL expression
+    (7) expression -> expression . DIV expression
+
+  ! shift/reduce conflict for SUM resolved as shift
+  ! shift/reduce conflict for RES resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    $end            reduce using rule 4 (expression -> expression SUM expression .)
+    PARE2           reduce using rule 4 (expression -> expression SUM expression .)
+    SUM             shift and go to state 10
+    RES             shift and go to state 11
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+
+  ! SUM             [ reduce using rule 4 (expression -> expression SUM expression .) ]
+  ! RES             [ reduce using rule 4 (expression -> expression SUM expression .) ]
+  ! MUL             [ reduce using rule 4 (expression -> expression SUM expression .) ]
+  ! DIV             [ reduce using rule 4 (expression -> expression SUM expression .) ]
+
+
+state 18
+
+    (5) expression -> expression RES expression .
+    (4) expression -> expression . SUM expression
+    (5) expression -> expression . RES expression
+    (6) expression -> expression . MUL expression
+    (7) expression -> expression . DIV expression
+
+  ! shift/reduce conflict for SUM resolved as shift
+  ! shift/reduce conflict for RES resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    $end            reduce using rule 5 (expression -> expression RES expression .)
+    PARE2           reduce using rule 5 (expression -> expression RES expression .)
+    SUM             shift and go to state 10
+    RES             shift and go to state 11
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+
+  ! SUM             [ reduce using rule 5 (expression -> expression RES expression .) ]
+  ! RES             [ reduce using rule 5 (expression -> expression RES expression .) ]
+  ! MUL             [ reduce using rule 5 (expression -> expression RES expression .) ]
+  ! DIV             [ reduce using rule 5 (expression -> expression RES expression .) ]
+
+
+state 19
+
+    (6) expression -> expression MUL expression .
+    (4) expression -> expression . SUM expression
+    (5) expression -> expression . RES expression
+    (6) expression -> expression . MUL expression
+    (7) expression -> expression . DIV expression
+
+  ! shift/reduce conflict for SUM resolved as shift
+  ! shift/reduce conflict for RES resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    $end            reduce using rule 6 (expression -> expression MUL expression .)
+    PARE2           reduce using rule 6 (expression -> expression MUL expression .)
+    SUM             shift and go to state 10
+    RES             shift and go to state 11
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+
+  ! SUM             [ reduce using rule 6 (expression -> expression MUL expression .) ]
+  ! RES             [ reduce using rule 6 (expression -> expression MUL expression .) ]
+  ! MUL             [ reduce using rule 6 (expression -> expression MUL expression .) ]
+  ! DIV             [ reduce using rule 6 (expression -> expression MUL expression .) ]
+
+
+state 20
+
+    (7) expression -> expression DIV expression .
+    (4) expression -> expression . SUM expression
+    (5) expression -> expression . RES expression
+    (6) expression -> expression . MUL expression
+    (7) expression -> expression . DIV expression
+
+  ! shift/reduce conflict for SUM resolved as shift
+  ! shift/reduce conflict for RES resolved as shift
+  ! shift/reduce conflict for MUL resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+    $end            reduce using rule 7 (expression -> expression DIV expression .)
+    PARE2           reduce using rule 7 (expression -> expression DIV expression .)
+    SUM             shift and go to state 10
+    RES             shift and go to state 11
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+
+  ! SUM             [ reduce using rule 7 (expression -> expression DIV expression .) ]
+  ! RES             [ reduce using rule 7 (expression -> expression DIV expression .) ]
+  ! MUL             [ reduce using rule 7 (expression -> expression DIV expression .) ]
+  ! DIV             [ reduce using rule 7 (expression -> expression DIV expression .) ]
+
+
+state 21
+
+    (3) statement -> SWITCH LETRA LETRA .
+
+    $end            reduce using rule 3 (statement -> SWITCH LETRA LETRA .)
+
+
+state 22
+
+    (8) expression -> PARE1 expression PARE2 .
+
+    SUM             reduce using rule 8 (expression -> PARE1 expression PARE2 .)
+    RES             reduce using rule 8 (expression -> PARE1 expression PARE2 .)
+    MUL             reduce using rule 8 (expression -> PARE1 expression PARE2 .)
+    DIV             reduce using rule 8 (expression -> PARE1 expression PARE2 .)
+    $end            reduce using rule 8 (expression -> PARE1 expression PARE2 .)
+    PARE2           reduce using rule 8 (expression -> PARE1 expression PARE2 .)
+
+
+state 23
+
+    (1) statement -> TIPO LETRA IGUAL expression .
+    (4) expression -> expression . SUM expression
+    (5) expression -> expression . RES expression
+    (6) expression -> expression . MUL expression
+    (7) expression -> expression . DIV expression
+
+    $end            reduce using rule 1 (statement -> TIPO LETRA IGUAL expression .)
+    SUM             shift and go to state 10
+    RES             shift and go to state 11
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for SUM in state 17 resolved as shift
+WARNING: shift/reduce conflict for RES in state 17 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 17 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 17 resolved as shift
+WARNING: shift/reduce conflict for SUM in state 18 resolved as shift
+WARNING: shift/reduce conflict for RES in state 18 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 18 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 18 resolved as shift
+WARNING: shift/reduce conflict for SUM in state 19 resolved as shift
+WARNING: shift/reduce conflict for RES in state 19 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 19 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 19 resolved as shift
+WARNING: shift/reduce conflict for SUM in state 20 resolved as shift
+WARNING: shift/reduce conflict for RES in state 20 resolved as shift
+WARNING: shift/reduce conflict for MUL in state 20 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 20 resolved as shift

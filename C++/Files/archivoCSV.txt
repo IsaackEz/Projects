@@ -1,0 +1,7 @@
+Nombre;Edad;Carrera;Hobby
+Mario Alberto;20;Cibernetica;Hacker
+Marcos;19;Cibernetica;Videojuegos
+Mariana;20;Cibernetica;Series
+Sara;20;Industrial;Gym
+Esteban;20;Animacion;Dibujar
+Miguel;19;Mercadotecnia;Voleibol
