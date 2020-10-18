@@ -172,6 +172,7 @@ function min() {
                     fPivot = positionPositiveRows[positionPositiveRow];
                 }
             }
+
             ePivot = TableT[fPivot][cPivot];
             for (let i = 0; i < lastRow.length; i++) {
                 newTable[fPivot][i] = TableT[fPivot][i] / ePivot;
