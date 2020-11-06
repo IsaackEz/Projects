@@ -1,7 +1,0 @@
-{
-	"python.testing.pytestArgs": ["SimplexMethod"],
-	"python.testing.unittestEnabled": false,
-	"python.testing.nosetestsEnabled": false,
-	"python.testing.pytestEnabled": false,
-	"C_Cpp.errorSquiggles": "Enabled"
-}
